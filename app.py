@@ -1,363 +1,316 @@
-import streamlit as st import time import pandas as pd import matplotlib.pyplot as plt
+import streamlit as st
+import pandas as pd
+import matplotlib.pyplot as plt
+import time
 
-st.set_page_config(page_title="Q-E-MAO Dashboard", layout="wide")
+# -----------------------------------
+# PAGE CONFIG
+# -----------------------------------
 
-----------------------
+st.set_page_config(
+    page_title="Q-E-MAO Dashboard",
+    layout="wide"
+)
 
-TITLE SECTION
+# -----------------------------------
+# TITLE
+# -----------------------------------
 
-----------------------
-
-st.title("Q-E-MAO Dashboard") st.subheader("Quantum-Enhanced Smart Distributed AI System")
+st.title("Q-E-MAO Dashboard")
+st.subheader("Quantum-Enhanced Smart Distributed AI System")
 
 st.markdown("""
+Welcome to the Q-E-MAO research dashboard.
 
-About the Project
+This project combines:
+- Edge AI
+- Multi-Agent AI
+- Neuro-Symbolic Verification
+- Quantum Optimization
+- Cloud Coordination
 
-Q-E-MAO is a smart distributed AI framework that combines:
+The system demonstrates fast and intelligent real-time AI orchestration.
+""")
 
-Edge AI
+# -----------------------------------
+# SIDEBAR
+# -----------------------------------
 
-Multi-Agent AI
+st.sidebar.title("Navigation")
 
-Neuro-Symbolic Verification
+menu = st.sidebar.radio(
+    "Select Section",
+    [
+        "Introduction",
+        "Architecture",
+        "Workflow",
+        "Case Studies",
+        "Performance",
+        "Applications",
+        "Future Scope"
+    ]
+)
 
-Quantum Optimization
+# -----------------------------------
+# INTRODUCTION
+# -----------------------------------
 
-Cloud Backup Systems
+if menu == "Introduction":
 
+    st.header("Introduction")
 
-This dashboard demonstrates how the architecture works in real-time. """)
+    st.write("""
+Modern AI systems use many intelligent AI models working together.
 
-----------------------
+Traditional cloud systems become slow because:
+- High latency
+- Network overload
+- Scalability problems
+- Privacy risks
 
-SIDEBAR
+Q-E-MAO solves these problems using:
+- Edge AI
+- Distributed orchestration
+- Quantum computing
+- Multi-agent coordination
+""")
 
-----------------------
+# -----------------------------------
+# ARCHITECTURE
+# -----------------------------------
 
-st.sidebar.title("Navigation") section = st.sidebar.radio( "Select Section", [ "System Architecture", "Workflow Simulation", "Case Studies", "Performance Results", "Applications", "Future Scope" ] )
+elif menu == "Architecture":
 
-----------------------
+    st.header("Q-E-MAO Architecture")
 
-SYSTEM ARCHITECTURE
+    col1, col2, col3, col4 = st.columns(4)
 
-----------------------
+    with col1:
+        st.info("""
+        DEVICE LAYER
+        
+        - Local AI Processing
+        - Sensors
+        - Fast Response
+        """)
 
-if section == "System Architecture": st.header("Q-E-MAO Architecture")
+    with col2:
+        st.success("""
+        EDGE CLUSTER
+        
+        - Device Coordination
+        - Distributed AI
+        - Team Collaboration
+        """)
 
-col1, col2, col3, col4 = st.columns(4)
+    with col3:
+        st.warning("""
+        QUANTUM LAYER
+        
+        - Optimization
+        - Smart Scheduling
+        - Fast Search
+        """)
 
-with col1:
-    st.info("""
-    DEVICE LAYER
-    - Sensors
-    - Cameras
-    - Local AI Processing
-    - Fast Response
-    """)
+    with col4:
+        st.error("""
+        CLOUD LAYER
+        
+        - Backup Support
+        - Complex Processing
+        - Global Coordination
+        """)
 
-with col2:
-    st.success("""
-    EDGE CLUSTER
-    - Device Coordination
-    - Distributed AI
-    - Team Communication
-    """)
+# -----------------------------------
+# WORKFLOW
+# -----------------------------------
 
-with col3:
-    st.warning("""
-    QUANTUM LAYER
-    - Optimization
-    - Smart Scheduling
-    - Fast Search
-    """)
+elif menu == "Workflow":
 
-with col4:
-    st.error("""
-    CLOUD LAYER
-    - Backup Support
-    - Complex Tasks
-    - Global Coordination
-    """)
+    st.header("System Workflow")
+
+    if st.button("Start Workflow Simulation"):
+
+        progress = st.progress(0)
+
+        steps = [
+            "Sensor collecting data...",
+            "Edge device processing data...",
+            "AI agent selected...",
+            "AI agent executing task...",
+            "Neuro-symbolic verification running...",
+            "Quantum optimization processing...",
+            "Edge cluster coordination...",
+            "Final intelligent decision generated..."
+        ]
+
+        for i, step in enumerate(steps):
+
+            st.write(step)
+
+            progress.progress((i + 1) / len(steps))
+
+            time.sleep(1)
+
+        st.success("Workflow Completed Successfully")
+
+# -----------------------------------
+# CASE STUDIES
+# -----------------------------------
+
+elif menu == "Case Studies":
+
+    st.header("Case Studies")
+
+    case = st.selectbox(
+        "Select Case Study",
+        [
+            "Autonomous Vehicles",
+            "Healthcare & Pathology",
+            "Smart Manufacturing"
+        ]
+    )
+
+    if case == "Autonomous Vehicles":
+
+        st.subheader("Autonomous Vehicles")
+
+        st.write("- Real-time obstacle detection")
+        st.write("- Fast vehicle coordination")
+        st.write("- Route optimization")
+        st.write("- Reduced reaction time")
+
+        st.success("Result: Faster decisions and safer transportation")
+
+    elif case == "Healthcare & Pathology":
+
+        st.subheader("Healthcare & Pathology")
+
+        st.write("- Medical image analysis")
+        st.write("- Biomarker detection")
+        st.write("- Privacy-safe diagnostics")
+        st.write("- Faster pathology analysis")
+
+        st.success("Result: Faster diagnosis and improved privacy")
+
+    elif case == "Smart Manufacturing":
+
+        st.subheader("Smart Manufacturing")
+
+        st.write("- Industrial robot coordination")
+        st.write("- Predictive maintenance")
+        st.write("- Production optimization")
+        st.write("- Quality monitoring")
+
+        st.success("Result: Higher efficiency and lower downtime")
+
+# -----------------------------------
+# PERFORMANCE
+# -----------------------------------
+
+elif menu == "Performance":
+
+    st.header("Performance Results")
+
+    data = {
+        "Metric": [
+            "Processing Speed",
+            "Energy Efficiency",
+            "Local Decisions",
+            "Memory Reduction"
+        ],
+        "Q-E-MAO": [380, 162, 199, 191],
+        "Traditional System": [100, 100, 100, 100]
+    }
+
+    df = pd.DataFrame(data)
+
+    st.dataframe(df)
+
+    fig, ax = plt.subplots(figsize=(8, 5))
+
+    x = range(len(df["Metric"]))
+
+    ax.bar(x, df["Q-E-MAO"], width=0.4, label="Q-E-MAO")
+
+    ax.bar(
+        [i + 0.4 for i in x],
+        df["Traditional System"],
+        width=0.4,
+        label="Traditional"
+    )
+
+    ax.set_xticks([i + 0.2 for i in x])
+
+    ax.set_xticklabels(df["Metric"])
+
+    ax.set_ylabel("Performance")
+
+    ax.set_title("Q-E-MAO Performance Comparison")
+
+    ax.legend()
+
+    st.pyplot(fig)
+
+# -----------------------------------
+# APPLICATIONS
+# -----------------------------------
+
+elif menu == "Applications":
+
+    st.header("Applications")
+
+    applications = [
+        "Autonomous Vehicles",
+        "Smart Cities",
+        "Healthcare AI",
+        "Industrial Robotics",
+        "Smart Farming",
+        "Defense Systems",
+        "6G Intelligent Networks",
+        "Space Systems"
+    ]
+
+    for app in applications:
+        st.write(f"✅ {app}")
+
+# -----------------------------------
+# FUTURE SCOPE
+# -----------------------------------
+
+elif menu == "Future Scope":
+
+    st.header("Future Scope")
+
+    future_data = {
+        "Year": [
+            "2026",
+            "2027",
+            "2028",
+            "2029",
+            "2030+"
+        ],
+        "Technology": [
+            "6G Integration",
+            "Quantum Internet",
+            "Smart Drone Swarms",
+            "Advanced Robotics",
+            "Global AI Collaboration"
+        ]
+    }
+
+    future_df = pd.DataFrame(future_data)
+
+    st.table(future_df)
+
+    st.success(
+        "Future AI systems will combine edge intelligence and quantum computing."
+    )
+
+# -----------------------------------
+# FOOTER
+# -----------------------------------
 
 st.markdown("---")
-st.subheader("Architecture Flow")
-st.markdown(
-    """
-    Sensor Data → Device Layer → Edge Cluster → Quantum Layer → Cloud Layer
-    """
-)
 
-----------------------
-
-WORKFLOW SIMULATION
-
-----------------------
-
-elif section == "Workflow Simulation": st.header("Real-Time Workflow Simulation")
-
-if st.button("Start Simulation"):
-
-    progress = st.progress(0)
-    status = st.empty()
-
-    steps = [
-        "Step 1: Sensor collecting data...",
-        "Step 2: Edge device processing locally...",
-        "Step 3: AI agent selected by orchestrator...",
-        "Step 4: AI agent analyzing task...",
-        "Step 5: Neuro-symbolic verification checking logic...",
-        "Step 6: Quantum optimization running...",
-        "Step 7: Edge cluster coordination...",
-        "Step 8: Final intelligent decision generated..."
-    ]
-
-    for i, step in enumerate(steps):
-        status.text(step)
-        progress.progress((i + 1) / len(steps))
-        time.sleep(1)
-
-    st.success("Simulation Completed Successfully")
-
-----------------------
-
-CASE STUDIES
-
-----------------------
-
-elif section == "Case Studies": st.header("Case Studies")
-
-case = st.selectbox(
-    "Choose Case Study",
-    [
-        "Autonomous Vehicles",
-        "Healthcare & Pathology",
-        "Smart Manufacturing"
-    ]
-)
-
-if case == "Autonomous Vehicles":
-    st.subheader("Autonomous Vehicles")
-    st.write("- Real-time obstacle detection")
-    st.write("- Fast vehicle coordination")
-    st.write("- Quantum route optimization")
-    st.write("- Reduced reaction time")
-
-    st.success("Results: Faster decisions and better traffic management")
-
-elif case == "Healthcare & Pathology":
-    st.subheader("Healthcare & Pathology")
-    st.write("- Medical image analysis")
-    st.write("- Biomarker detection")
-    st.write("- Privacy-safe diagnostics")
-    st.write("- Faster pathology analysis")
-
-    st.success("Results: Faster diagnosis and reduced cloud dependency")
-
-elif case == "Smart Manufacturing":
-    st.subheader("Smart Manufacturing")
-    st.write("- Industrial robot coordination")
-    st.write("- Predictive maintenance")
-    st.write("- Production optimization")
-    st.write("- Quality monitoring")
-
-    st.success("Results: Less downtime and higher efficiency")
-
-----------------------
-
-PERFORMANCE RESULTS
-
-----------------------
-
-elif section == "Performance Results": st.header("Performance Results")
-
-data = {
-    "Metric": [
-        "Processing Speed",
-        "Energy Efficiency",
-        "Local Decision Rate",
-        "Memory Reduction"
-    ],
-    "Q-E-MAO": [380, 162, 199, 191],
-    "Baseline": [100, 100, 100, 100]
-}
-
-df = pd.DataFrame(data)
-st.dataframe(df)
-
-fig, ax = plt.subplots(figsize=(8, 5))
-
-x = range(len(df["Metric"]))
-
-ax.bar(x, df["Q-E-MAO"], width=0.4, label="Q-E-MAO")
-ax.bar([i + 0.4 for i in x], df["Baseline"], width=0.4, label="Baseline")
-
-ax.set_xticks([i + 0.2 for i in x])
-ax.set_xticklabels(df["Metric"], rotation=10)
-ax.set_ylabel("Performance")
-ax.set_title("Q-E-MAO Performance Comparison")
-ax.legend()
-
-st.pyplot(fig)
-
-st.info("3.8× faster processing with lower energy consumption.")
-
-----------------------
-
-APPLICATIONS
-
-----------------------
-
-elif section == "Applications": st.header("Applications")
-
-apps = [
-    "Autonomous Vehicles",
-    "Smart Cities",
-    "Healthcare Systems",
-    "Industrial Robotics",
-    "Smart Farming",
-    "Defense Systems",
-    "6G Intelligent Networks",
-    "Space Systems"
-]
-
-for app in apps:
-    st.write(f"✅ {app}")
-
-----------------------
-
-FUTURE SCOPE
-
-----------------------
-
-elif section == "Future Scope": st.header("Future Scope")
-
-future = {
-    "Year": ["2026", "2027", "2028", "2029", "2030+"],
-    "Technology": [
-        "6G Integration",
-        "Quantum Internet",
-        "Smart Drone Swarms",
-        "Advanced Robotics",
-        "Global AI Collaboration"
-    ]
-}
-
-future_df = pd.DataFrame(future)
-st.table(future_df)
-
-st.success(
-    "Future intelligent systems will combine Edge AI and Quantum Computing."
-)
-
-----------------------
-
-FOOTER
-
-----------------------
-
-st.markdown("---") st.caption("Q-E-MAO Research Dashboard | IEEE Presentation Prototype")
-
-----------------------
-
-GITHUB README CONTENT
-
-----------------------
-
-README = """
-
-Q-E-MAO Dashboard
-
-Quantum-Enhanced Smart Distributed AI System
-
-Overview
-
-Q-E-MAO is a research-based intelligent distributed AI framework that combines:
-
-Edge AI
-
-Multi-Agent AI
-
-Neuro-Symbolic Verification
-
-Quantum Optimization
-
-Cloud Coordination
-
-
-This Streamlit dashboard demonstrates:
-
-System Architecture
-
-Workflow Simulation
-
-Case Studies
-
-Performance Analysis
-
-Applications
-
-Future Scope
-
-
-Technologies Used
-
-Python
-
-Streamlit
-
-Pandas
-
-Matplotlib
-
-
-Installation
-
-Install required libraries:
-
-pip install streamlit pandas matplotlib
-
-Run the Project
-
-streamlit run app.py
-
-Features
-
-Interactive AI dashboard
-
-Workflow simulation
-
-Research visualization
-
-Performance comparison charts
-
-Real-world case studies
-
-
-Applications
-
-Autonomous Vehicles
-
-Smart Manufacturing
-
-Healthcare AI
-
-Smart Cities
-
-Robotics
-
-6G Intelligent Networks
-
-
-Future Scope
-
-Quantum Internet
-
-Smart Drone Systems
-
-Advanced Robotics
-
-Global AI Collaboration """
-
-
-st.download_button( label="Download README.md", data=README, file_name="README.md", mime="text/markdown" )
+st.caption("Q-E-MAO Research Dashboard | IEEE Presentation Prototype")
